@@ -7,8 +7,12 @@ def index():
 
 @app.route('/checkout', methods=['POST'])         
 def checkout():
-    print(request.form)
-    return render_template("checkout.html")
+    # print(request.form)
+    nfruits = int(request.form['strawberry']) + int(request.form['raspberry']) + int(request.form['apple'])
+    full_name = request.form['first_name'] + ' ' + request.form['last_name']
+    print(f'Cobrando a {full_name} por {nfruits} frutas')
+
+    return render_template("checkout.html", strawberry=request.form['strawberry'], raspberry=request.form['raspberry'], apple=request.form['apple'], first_name=request.form['first_name'], last_name=request.form['last_name'], student_id=request.form['student_id'], nfruits=nfruits, full_name=full_name)
 
 @app.route('/fruits')         
 def fruits():
